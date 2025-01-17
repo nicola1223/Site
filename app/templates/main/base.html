@@ -6,6 +6,13 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
+    <nav>
+        {% block navigation %}
+            <a href="{% url "main_page" %}">Главная</a>
+            <a href="{% url "index" %}">Грузовики</a>
+            <a href="/admin">Админка</a>
+        {% endblock navigation %}
+    </nav>
     <main>
         {% block content %}{% endblock content %}
     </main>
