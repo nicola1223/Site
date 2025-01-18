@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Truck
+from .models import *
 
 class TruckSerializer(serializers.ModelSerializer):
 
