@@ -10,9 +10,9 @@ class TruckSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
 
-        print(representation['truck_main_image'])
-        print(instance.truck_main_image)
-
-        representation['truck_main_image'] = instance.truck_main_image if instance.truck_main_image else None
+        if instance.truck_main_image:
+            representation['truck_main_image'] = f'http://localhost:8000{instance.truck_main_image.url}'
+        else:
+            representation['truck_main_image'] = ''
 
         return representation
