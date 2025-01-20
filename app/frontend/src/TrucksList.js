@@ -60,7 +60,7 @@ const TracksList = () => {
                         <tr key={c.pk}>
                             <td>{c.pk}</td>
                             <td>{c.truck_name}</td>
-                            <td><img src={c.truck_main_image} alt={c.truck_name} style={{ width: '50px' }} /></td>
+                            <td><img src={c.truck_main_image} alt={c.truck_name} style={{ width: '20vw' }} /></td>
                             <td>{c.truck_description}</td>
                             <td>{c.truck_price}</td>
                             <td>
