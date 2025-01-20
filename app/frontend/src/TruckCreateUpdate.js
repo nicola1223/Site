@@ -11,8 +11,6 @@ const TruckCreateUpdate = () => {
     const truckPrice = useRef();
     const truckDescription = useRef();
 
-    var truckPrevMainImage;
-
     useEffect(() => {
         if (pk) {
             trucksService.getTruck(pk).then((c) => {
@@ -20,8 +18,6 @@ const TruckCreateUpdate = () => {
                 truckMainImage.current.value = null;
                 truckPrice.current.value = c.truck_price;
                 truckDescription.current.value = c.truck_description;
-
-                truckPrevMainImage = c.truck_main_image;
             }).catch((error) => {
                 console.error("Error fetching truck data:", error);
             });
@@ -69,14 +65,14 @@ const TruckCreateUpdate = () => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="form-group">
-                <label>Truck name:</label>
-                <input className="form-control" type="text" ref={truckName} required/>
-                <label>Truck main image</label>
-                <input className="form-control" type="file" ref={truckMainImage} accept="image/*"/>
-                <label>Truck price:</label>
-                <input className="form-control" type="number" step="0.01" ref={truckPrice} required/>
-                <label>Truck description:</label>
-                <textarea className="form-control" ref={truckDescription}></textarea>
+                <label className="form-label">Truck name:</label>
+                <input className="form-control" id="truckName" type="text" ref={truckName} required/>
+                <label className="form-label">Truck main image</label>
+                <input className="form-control" id="truckMainImage" type="file" ref={truckMainImage} accept="image/*"/>
+                <label className="form-label">Truck price:</label>
+                <input className="form-control" id="truckPrice" type="number" step="0.01" ref={truckPrice} required/>
+                <label className="form-label">Truck description:</label>
+                <textarea className="form-control" id="truckDescription" ref={truckDescription}></textarea>
                 <input className="btn btn-primary" type="submit" value="Submit" />
             </div>
         </form>
