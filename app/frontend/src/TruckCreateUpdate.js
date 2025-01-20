@@ -11,13 +11,17 @@ const TruckCreateUpdate = () => {
     const truckPrice = useRef();
     const truckDescription = useRef();
 
+    var truckPrevMainImage;
+
     useEffect(() => {
         if (pk) {
             trucksService.getTruck(pk).then((c) => {
                 truckName.current.value = c.truck_name;
-                truckMainImage.current.value = c.truck_main_image
+                truckMainImage.current.value = null;
                 truckPrice.current.value = c.truck_price;
                 truckDescription.current.value = c.truck_description;
+
+                truckPrevMainImage = c.truck_main_image;
             }).catch((error) => {
                 console.error("Error fetching truck data:", error);
             });

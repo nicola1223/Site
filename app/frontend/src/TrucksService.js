@@ -25,7 +25,7 @@ export default class TrucksService{
         return axios.post(url, truck);
     }
     updateTruck(truck) {
-        const url = `${API_URL}/api/trucks/${truck.pk}/`;
+        const url = `${API_URL}/api/trucks/${truck.get('pk')}/`;
         return axios.put(url, truck);
     }
 }
