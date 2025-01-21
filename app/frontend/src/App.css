@@ -6,4 +6,25 @@
 
 .form-group {
   max-width: 25%;
+  margin-top: 15px;
+}
+
+.form-control  {
+  border-radius: 10px;
+}
+
+textarea.form-control {
+  height: 200px;
+}
+
+.input-group-text {
+  border-radius: 10px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+#truckPrice {
+  max-width: 90px;
 }

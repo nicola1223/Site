@@ -65,14 +65,23 @@ const TruckCreateUpdate = () => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="form-group">
-                <label className="form-label">Truck name:</label>
-                <input className="form-control" id="truckName" type="text" ref={truckName} required/>
-                <label className="form-label">Truck main image</label>
-                <input className="form-control" id="truckMainImage" type="file" ref={truckMainImage} accept="image/*"/>
-                <label className="form-label">Truck price:</label>
-                <input className="form-control" id="truckPrice" type="number" step="0.01" ref={truckPrice} required/>
-                <label className="form-label">Truck description:</label>
-                <textarea className="form-control" id="truckDescription" ref={truckDescription}></textarea>
+                <div className="input-group">
+                    <span className="input-group-text">Truck name</span>
+                    <input className="form-control" id="truckName" type="text" ref={truckName} required/>
+                </div>
+                <div className="input-group">
+                    <span className="input-group-text">Truck main image</span>
+                    <input className="form-control" id="truckMainImage" type="file" ref={truckMainImage} accept="image/*"/>
+                </div>
+                <div className="input-group">
+                    <span className="input-group-text">Truck price</span>
+                    <input className="form-control" id="truckPrice" type="number" step="0.01" ref={truckPrice} required/>
+                    <span className="input-group-text">BLR</span>
+                </div>
+                <div className="input-group">
+                    <label className="input-group-text">Truck description:</label>
+                    <textarea className="form-control" id="truckDescription" ref={truckDescription}></textarea>
+                </div>
                 <input className="btn btn-primary" type="submit" value="Submit" />
             </div>
         </form>
