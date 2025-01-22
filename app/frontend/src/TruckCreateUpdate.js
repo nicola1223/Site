@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import TrucksService from './TrucksService';
 
 const trucksService = new TrucksService();
@@ -10,6 +10,8 @@ const TruckCreateUpdate = () => {
     const truckMainImage = useRef();
     const truckPrice = useRef();
     const truckDescription = useRef();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (pk) {
@@ -60,31 +62,69 @@ const TruckCreateUpdate = () => {
         } else {
             handleCreate();
         }
+        navigate('/');
+    };
+
+    const FileUpload = () => {
+        const [fileName, setFileName] = React.useState('Выберите изображение');
+    
+        const handleFileChange = (event) => {
+            if (event.target.files.length > 0) {
+                setFileName(event.target.files[0].name);
+            } else {
+                setFileName('Выберите изображение');
+            }
+        };
+    
+        return (
+            <div>
+                <label className="custom-file-upload form-control">
+                    {fileName}
+                    <input
+                        className="form-control"
+                        id="truckMainImage"
+                        type="file"
+                        ref={truckMainImage}
+                        accept="image/*"
+                        onChange={handleFileChange}
+                    />
+                </label>
+                <style jsx="true">{`
+                    .custom-file-upload {
+                        display: inline-block;
+                        padding: 6px 12px;
+                        cursor: pointer;
+                        border: 1px solid #ccc;
+                        background-color: #f8f8f8;
+                    }
+                    input[type="file"] {
+                        display: none; /* Скрываем стандартный input */
+                    }
+                `}</style>
+            </div>
+        );
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <div className="input-group">
-                    <span className="input-group-text">Truck name</span>
-                    <input className="form-control" id="truckName" type="text" ref={truckName} required/>
+        <div className="create-update-form">
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <input className="form-control" id="truckName" type="text" ref={truckName} placeholder="Название" required/>  
+                    {/* <input className="form-control" id="truckMainImage" type="file"  accept="image/*"/> */}
+                    <FileUpload/>
+                    <div className="input-group">
+                        <input className="form-control" id="truckPrice" type="number" step="0.01" ref={truckPrice} placeholder="Цена" required/>
+                        <span className="input-group-text">BLR</span>
+                    </div>
+                    <div className="input-group">
+                        <textarea className="form-control" id="truckDescription" ref={truckDescription} placeholder="Описание"></textarea>
+                    </div>
+                    <div className="submit">
+                        <input className="btn btn-primary" type="submit" value="Добавить" />
+                    </div>
                 </div>
-                <div className="input-group">
-                    <span className="input-group-text">Truck main image</span>
-                    <input className="form-control" id="truckMainImage" type="file" ref={truckMainImage} accept="image/*"/>
-                </div>
-                <div className="input-group">
-                    <span className="input-group-text">Truck price</span>
-                    <input className="form-control" id="truckPrice" type="number" step="0.01" ref={truckPrice} required/>
-                    <span className="input-group-text">BLR</span>
-                </div>
-                <div className="input-group">
-                    <label className="input-group-text">Truck description:</label>
-                    <textarea className="form-control" id="truckDescription" ref={truckDescription}></textarea>
-                </div>
-                <input className="btn btn-primary" type="submit" value="Submit" />
-            </div>
-        </form>
+            </form>
+        </div>
     );
 };
 
