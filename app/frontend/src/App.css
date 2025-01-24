@@ -1,40 +1,60 @@
 @import  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
 
-.App {
-  text-align: center;
+.content {
+  margin-top: 66px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar-logo {
+  height: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.create-update-form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.form-group {
+  width: 300px;
+  padding-top: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-control  {
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+textarea.form-control {
+  height: 200px;
+}
+
+.input-group-text {
+  border-radius: 10px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+#truckPrice {
+  max-width: 90px;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.navbar.visible {
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.big {
+  display: block;
+  height: 10000px;
 }
