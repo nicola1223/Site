@@ -1,8 +1,12 @@
 import React, { Component, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Link } from 'react-router-dom';
 import { Route } from 'react-router-dom';
+
 import TracksList from './TrucksList';
 import TruckCreateUpdate from './TruckCreateUpdate';
+import Auth from './Auth';
+import ProtectedRoute from './ProtectedRoute';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.css';
@@ -49,7 +53,7 @@ const BaseLayout = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-
+                        <Link className="nav-item nav-link ms-auto me-auto" to="/login">LOGIN</Link>
                         <Link className="nav-item nav-link ms-auto me-auto" to="/">TRUCKS</Link>
                         <Link className="nav-item nav-link ms-auto me-auto" to="/truck">CREATE TRUCK</Link>
                     </div>
@@ -58,8 +62,8 @@ const BaseLayout = () => {
             <div className="container-fluid">
                     <div className="content">
                         <Routes>
-                            <Route path="/login" element={<AuthForm />} />
-                            <Route element={<ProtectedRoute />}/>
+                            <Route path="/login" element={<Auth/>} />
+                            <Route element={<ProtectedRoute/>}/>
                             <Route path='/' element={<TracksList/>}/>
                             <Route path='/truck/:pk' element={<TruckCreateUpdate/>}/>
                             <Route path='/truck' element={<TruckCreateUpdate/>}/>
