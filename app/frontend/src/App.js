@@ -49,6 +49,7 @@ const BaseLayout = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
+
                         <Link className="nav-item nav-link ms-auto me-auto" to="/">TRUCKS</Link>
                         <Link className="nav-item nav-link ms-auto me-auto" to="/truck">CREATE TRUCK</Link>
                     </div>
@@ -57,6 +58,8 @@ const BaseLayout = () => {
             <div className="container-fluid">
                     <div className="content">
                         <Routes>
+                            <Route path="/login" element={<AuthForm />} />
+                            <Route element={<ProtectedRoute />}/>
                             <Route path='/' element={<TracksList/>}/>
                             <Route path='/truck/:pk' element={<TruckCreateUpdate/>}/>
                             <Route path='/truck' element={<TruckCreateUpdate/>}/>
