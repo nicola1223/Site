@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'trucks',
-    'auth',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +71,7 @@ CORS_ORIGIN_WHITELIST = (
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentications.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
 
