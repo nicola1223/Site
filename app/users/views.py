@@ -12,7 +12,7 @@ class ProtectedView(APIView):
         return Response({"message": "Authenticated!"})
 
 
-class LogoutView(APIView):
+class TokenDeleteView(APIView):
     def post(self, request):
         try:
             refresh_token = request.data["refresh_token"]
