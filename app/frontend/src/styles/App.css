@@ -1,0 +1,60 @@
+@import  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+
+.content {
+  margin-top: 66px;
+}
+
+.navbar-logo {
+  height: 40px;
+}
+
+.create-update-form {
+  display: flex;
+  justify-content: center;
+}
+
+.form-group {
+  width: 300px;
+  padding-top: 10px;
+}
+
+.form-control  {
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+textarea.form-control {
+  height: 200px;
+}
+
+.input-group-text {
+  border-radius: 10px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+#truckPrice {
+  max-width: 90px;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.navbar.visible {
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.big {
+  display: block;
+  height: 10000px;
+}
