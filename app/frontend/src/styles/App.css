@@ -54,7 +54,10 @@ textarea.form-control {
   transition: transform 0.3s ease;
 }
 
-.big {
-  display: block;
-  height: 10000px;
+.logout-button {
+  color: rgb(218, 78, 78) !important;
+}
+
+.login-button {
+  color: rgb(81, 243, 162) !important;
 }

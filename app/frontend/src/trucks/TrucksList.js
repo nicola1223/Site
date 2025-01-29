@@ -48,11 +48,11 @@ const TracksList = () => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Truck name</th>
-                        <th>Truck main image</th>
-                        <th>Truck description</th>
-                        <th>Truck price</th>
-                        <th>Actions</th>
+                        <th>Название</th>
+                        <th>Главное изображение</th>
+                        <th>Описание</th>
+                        <th>Цена</th>
+                        <th>Действия</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,8 +64,10 @@ const TracksList = () => {
                             <td>{c.truck_description}</td>
                             <td>{c.truck_price}</td>
                             <td>
-                                <button onClick={() => handleDelete(c.pk)}>Delete</button>
-                                <a href={`/truck/${c.pk}`}>Update</a>
+                                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'start' }}>
+                                    <button onClick={() => handleDelete(c.pk)}>Удалить</button>
+                                    <a href={`/truck/${c.pk}`}>Обновить</a>
+                                </div>
                             </td>
                         </tr>
                     ))}
