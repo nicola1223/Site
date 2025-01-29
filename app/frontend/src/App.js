@@ -46,7 +46,7 @@ const BaseLayout = () => {
             setIsAuthenticated(!!token);
         };
         checkAuth();
-        window.addEventListener('scroll', handleScroll); 
+        window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -59,34 +59,34 @@ const BaseLayout = () => {
                 <Link className="navbar-brand" to="/">
                     <img className="navbar-logo" src={logo} alt="Logo" />
                 </Link>
-                <span className="navbar-brand" href="#">Trucks</span>
+                <span className="navbar-brand">BLAGOUSTROYSTVOBREST</span>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-                        <Link className="nav-item nav-link ms-auto me-auto" to="/">TRUCKS</Link>
-                        <Link className="nav-item nav-link ms-auto me-auto" to="/truck">CREATE TRUCK</Link>
-                        { isAuthenticated ? (
-                            <Logout onLogout={handleLogout}/>
+                        <Link className="nav-item nav-link ms-auto me-auto" to="/">МАШИНЫ</Link>
+                        <Link className="nav-item nav-link ms-auto me-auto" to="/truck">ДОБАВИТЬ МАШИНУ</Link>
+                        {isAuthenticated ? (
+                            <Logout onLogout={handleLogout} className="nav-item nav-link ms-auto" />
                         ) : (
-                            <Link className="nav-item nav-link ms-auto me-auto" to="/login">LOGIN</Link>
+                            <Link className="nav-item nav-link ms-auto login-button" to="/login">ВОЙТИ</Link>
                         )}
                     </div>
                 </div>
             </nav>
             <div className="container-fluid">
-                    <div className="content">
-                        <Routes>
-                            <Route path="/login" element={<Auth/>} />
-                            <Route element={<ProtectedRoute/>}>
-                                <Route path='/' element={<TracksList/>}/>
-                                <Route path='/truck/:pk' element={<TruckCreateUpdate/>}/>
-                                <Route path='/truck' element={<TruckCreateUpdate/>}/>
-                            </Route>
-                        </Routes>
-                    </div>
-                    <div className="big"></div>
+                <div className="content">
+                    <Routes>
+                        <Route path="/login" element={<Auth />} />
+                        <Route element={<ProtectedRoute />}>
+                            <Route path='/' element={<TracksList />} />
+                            <Route path='/truck/:pk' element={<TruckCreateUpdate />} />
+                            <Route path='/truck' element={<TruckCreateUpdate />} />
+                        </Route>
+                    </Routes>
+                </div>
+                <div className="big"></div>
             </div>
         </div>
     )
@@ -96,7 +96,7 @@ class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <BaseLayout/>
+                <BaseLayout />
             </BrowserRouter>
         );
     }

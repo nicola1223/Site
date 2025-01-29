@@ -14,14 +14,16 @@ const Logout = ({onLogout}) => {
         } finally {
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
-            onLogout();
+            if (typeof onLogout === 'function') {
+                onLogout();
+            }
             navigate('/login');
         }
     };
 
     return (
-        <button onClick={ handleLogout } className="nav-item nav-link ms-auto me-auto">
-            LOGOUT
+        <button onClick={ handleLogout } className="nav-item nav-link ms-auto me-auto logout-button">
+            ВЫЙТИ
         </button>
     );
 };
