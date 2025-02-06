@@ -1,16 +1,22 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from rest_framework.views import APIView
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 from .models import *
 from .serializer import *
 
 # Create your views here.
-@api_view(['GET', 'POST'])
-def trucks_list(request):
-    if request.method == 'GET':
-        data = []
+class TruckListView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    @staticmethod
+    def get(request):
         next_page = 1
         previous_page = 1
         trucks = Truck.objects.all()
@@ -36,7 +42,9 @@ def trucks_list(request):
             'nextlink': f'api/trucks/?page={next_page}',
             'prevlink': f'api/trucks/?page={previous_page}',
         })
-    elif request.method == 'POST':
+
+    @staticmethod
+    def post(request):
         serializer = TruckSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -44,22 +52,38 @@ def trucks_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def trucks_detail(request, pk):
-    try:
-        truck = Truck.objects.get(pk=pk)
-    except Truck.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+class TruckDetailView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
-    if request.method == 'GET':
+    @staticmethod
+    def get(request, pk):
+        try:
+            truck = Truck.objects.get(pk=pk)
+        except Truck.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
         serializer = TruckSerializer(truck, context={'request': request})
         return Response(serializer.data)
-    elif request.method == 'PUT':
+
+    @staticmethod
+    def put(request, pk):
+        try:
+            truck = Truck.objects.get(pk=pk)
+        except Truck.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
         serializer = TruckSerializer(truck, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
+
+    @staticmethod
+    def delete(request, pk):
+        try:
+            truck = Truck.objects.get(pk=pk)
+        except Truck.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
         truck.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
